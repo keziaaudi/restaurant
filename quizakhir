@@ -1,0 +1,160 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.restaurant;
+
+/**
+ *
+ * @author keziaaudi
+ */
+import java.util.Scanner;
+
+abstract class Makanan {
+    protected String namaMakanan;
+    protected int harga;
+
+    public Makanan(String namaMakanan, int harga) {
+        this.namaMakanan = namaMakanan;
+        this.harga = harga;
+    }
+
+    public abstract void info();
+}
+
+abstract class Minuman {
+    protected String namaMinuman;
+    protected int harga;
+    protected String jenis;
+
+    public Minuman(String namaMinuman, int harga, String jenis) {
+        this.namaMinuman = namaMinuman;
+        this.harga = harga;
+        this.jenis = jenis;
+    }
+
+    public abstract void info();
+}
+
+class Soto extends Makanan {
+    public Soto() {
+        super("Soto", 15000);
+    }
+
+    public void info() {
+        System.out.println("Nama Makanan: " + namaMakanan);
+        System.out.println("Harga: Rp " + harga);
+    }
+}
+
+class Mie extends Makanan {
+    public Mie() {
+        super("Mie", 12000);
+    }
+
+    public void info() {
+        System.out.println("Nama Makanan: " + namaMakanan);
+        System.out.println("Harga: Rp " + harga);
+    }
+}
+
+class Teh extends Minuman {
+    public Teh(String jenis) {
+        super("Teh", 5000, jenis);
+    }
+
+    public void info() {
+        System.out.println("Nama Minuman: " + namaMinuman);
+        System.out.println("Harga: Rp " + harga);
+        System.out.println("Jenis: " + jenis);
+    }
+}
+
+class Kopi extends Minuman {
+    public Kopi(String jenis) {
+        super("Kopi", 7000, jenis);
+    }
+
+    public void info() {
+        System.out.println("Nama Minuman: " + namaMinuman);
+        System.out.println("Harga: Rp " + harga);
+        System.out.println("Jenis: " + jenis);
+    }
+}
+
+public class Restaurant {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Restaurant Kezia!");
+        System.out.println("Menu:");
+        System.out.println("1. Makanan");
+        System.out.println("2. Minuman");
+        System.out.print("Pilih jenis menu (1/2): ");
+        int menuChoice = scanner.nextInt();
+
+        if (menuChoice == 1) {
+            System.out.println("\nMakanan:");
+            System.out.println("1. Soto");
+            System.out.println("2. Mie");
+            System.out.print("Pilih makanan (1/2): ");
+            int foodChoice = scanner.nextInt();
+
+            if (foodChoice == 1) {
+                Makanan soto = new Soto();
+                soto.info();
+            } else if (foodChoice == 2) {
+                Makanan mie = new Mie();
+                mie.info();
+            } else {
+                System.out.println("Pilihan makanan tidak valid.");
+            }
+
+            System.out.print("Apakah Anda ingin memesan minuman? (ya/tidak): ");
+            String orderDrinkChoice = scanner.next();
+            if (orderDrinkChoice.equalsIgnoreCase("ya")) {
+                System.out.println("\nMinuman:");
+                System.out.println("1. Teh");
+                System.out.println("2. Kopi");
+                System.out.print("Pilih minuman (1/2): ");
+                int drinkChoice = scanner.nextInt();
+
+                if (drinkChoice == 1) {
+                    System.out.print("Pilih jenis minuman (panas/dingin): ");
+                    String drinkType = scanner.next();
+                    Minuman teh = new Teh(drinkType);
+                    teh.info();
+                } else if (drinkChoice == 2) {
+                    System.out.print("Pilih jenis minuman (panas/dingin): ");
+                    String drinkType = scanner.next();
+                    Minuman kopi = new Kopi(drinkType);
+                    kopi.info();
+                } else {
+                    System.out.println("Pilihan minuman tidak valid.");
+                }
+            }
+        } else if (menuChoice == 2) {
+            System.out.println("\nMinuman:");
+            System.out.println("1. Teh");
+            System.out.println("2. Kopi");
+            System.out.print("Pilih minuman (1/2): ");
+            int drinkChoice = scanner.nextInt();
+
+            if (drinkChoice == 1) {
+                System.out.print("Pilih jenis minuman (panas/dingin): ");
+                String drinkType = scanner.next();
+                Minuman teh = new Teh(drinkType);
+                teh.info();
+            } else if (drinkChoice == 2) {
+                System.out.print("Pilih jenis minuman (panas/dingin): ");
+                String drinkType = scanner.next();
+                Minuman kopi = new Kopi(drinkType);
+                kopi.info();
+            } else {
+                System.out.println("Pilihan minuman tidak valid.");
+            }
+        } else {
+            System.out.println("Pilihan menu tidak valid.");
+        }
+    }
+}
+
